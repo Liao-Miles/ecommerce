@@ -1,0 +1,47 @@
+1.
+
+// 先加商品到購物車
+http://localhost:8080/cart
+
+{
+  "userId": 1,
+  "productId": 2,
+  "quantity": 1
+}
+
+// 再從購物車下單
+http://localhost:8080/orders/from-cart
+
+{
+  "userId": 1,
+  "shippingAddress": "台北市信義區"
+}
+
+---------------------------------------------------------
+
+2.
+
+//直接下單
+http://localhost:8080/orders/direct
+
+ {
+   "userId": 1,
+   "items": [
+     {
+       "productId": 2,
+       "quantity": 1
+     },
+     {
+       "productId": 3,
+       "quantity": 2
+     }
+   ],
+   "shippingAddress": "台北市信義區"
+ }
+
+
+--------------------------------------
+
+3.
+//查詢該客人所有訂單
+http://localhost:8080/orders?userId=2
