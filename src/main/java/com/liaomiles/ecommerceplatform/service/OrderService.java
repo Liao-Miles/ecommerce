@@ -3,11 +3,7 @@ package com.liaomiles.ecommerceplatform.service;
 import com.liaomiles.ecommerceplatform.dto.request.CreateOrderRequest;
 import com.liaomiles.ecommerceplatform.dto.response.OrderItemResponse;
 import com.liaomiles.ecommerceplatform.dto.response.OrderResponse;
-import com.liaomiles.ecommerceplatform.entity.CartItem;
-import com.liaomiles.ecommerceplatform.entity.Order;
-import com.liaomiles.ecommerceplatform.entity.OrderItem;
-import com.liaomiles.ecommerceplatform.entity.Product;
-import com.liaomiles.ecommerceplatform.entity.User;
+import com.liaomiles.ecommerceplatform.entity.*;
 import com.liaomiles.ecommerceplatform.repository.CartItemRepository;
 import com.liaomiles.ecommerceplatform.repository.OrderItemRepository;
 import com.liaomiles.ecommerceplatform.repository.OrderRepository;
@@ -72,7 +68,7 @@ public class OrderService {
         // 创建订单
         Order order = new Order();
         order.setUser(user);
-        order.setStatus("pending");
+        order.setStatus(OrderStatus.PENDING);
         order.setTotalAmount(total);
         Order savedOrder = orderRepository.save(order);
 
@@ -129,7 +125,7 @@ public class OrderService {
         // 創建訂單
         Order order = new Order();
         order.setUser(user);
-        order.setStatus("pending");
+        order.setStatus(OrderStatus.PENDING);
         order.setTotalAmount(total);
         Order savedOrder = orderRepository.save(order);
 

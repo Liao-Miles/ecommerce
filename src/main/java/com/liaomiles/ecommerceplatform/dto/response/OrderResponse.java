@@ -1,5 +1,6 @@
 package com.liaomiles.ecommerceplatform.dto.response;
 
+import com.liaomiles.ecommerceplatform.entity.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public class OrderResponse {
     private Long id;
     private Long userId;
-    private String status;
+    private OrderStatus status;
     private BigDecimal totalAmount;
     private LocalDateTime createdAt;
     private List<OrderItemResponse> items;

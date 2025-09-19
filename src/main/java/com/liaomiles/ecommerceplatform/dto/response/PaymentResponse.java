@@ -1,5 +1,7 @@
 package com.liaomiles.ecommerceplatform.dto.response;
 
+import com.liaomiles.ecommerceplatform.entity.OrderStatus;
+import com.liaomiles.ecommerceplatform.entity.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,5 +12,5 @@ public class PaymentResponse {
     private Long orderId;
     private String method;
     private Double amount;
-    private String status;
+    private PaymentStatus status;
 }

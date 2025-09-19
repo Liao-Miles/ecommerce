@@ -12,8 +12,4 @@ public class PaymentRequest {
 
     @NotBlank
     private String method;
-
-    @NotNull
-    @Positive
-    private Double amount;
 }

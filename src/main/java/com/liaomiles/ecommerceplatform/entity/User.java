@@ -34,6 +34,9 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(nullable = false, length = 20)
+    private String role = "USER";
+
     @OneToMany(mappedBy = "user")
     private List<Order> orders = new ArrayList<>();
 

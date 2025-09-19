@@ -25,8 +25,9 @@ public class Payment {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal amount;
 
+    @Enumerated(EnumType.STRING)
     @Column(length = 20)
-    private String status = "success";
+    private PaymentStatus status;
 
     @Column(name = "paid_at")
     private LocalDateTime paidAt;
