@@ -94,3 +94,7 @@ ALTER TABLE cart_items
         );
 
 ALTER TABLE cart_items ALTER COLUMN user_id DROP NOT NULL;
+
+
+ALTER TABLE products
+    ADD COLUMN image_url VARCHAR(255);
