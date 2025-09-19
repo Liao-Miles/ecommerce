@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class AddCartItemRequest {
-    @NotNull
-    private Long userId;
+    private Long userId; // 已登入用戶可填
+    private String sessionId; // 未登入訪客可填
 
     @NotNull
     private Long productId;
@@ -16,4 +16,3 @@ public class AddCartItemRequest {
     @Min(1)
     private Integer quantity;
 }
-

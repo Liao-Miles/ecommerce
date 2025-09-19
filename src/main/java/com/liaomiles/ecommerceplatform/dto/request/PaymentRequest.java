@@ -9,7 +9,6 @@ import lombok.Data;
 public class PaymentRequest {
     @NotNull
     private Long orderId;
-
     @NotBlank
     private String method;
 }

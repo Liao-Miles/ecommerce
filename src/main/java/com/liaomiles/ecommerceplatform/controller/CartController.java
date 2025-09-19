@@ -22,13 +22,16 @@ public class CartController {
 
     @PostMapping
     public ResponseEntity<CartItemResponse> add(@Valid @RequestBody AddCartItemRequest request) {
+        // request 內 userId、sessionId 擇一必填
         CartItemResponse resp = cartService.addToCart(request);
         return ResponseEntity.created(URI.create("/cart/" + resp.getId())).body(resp);
     }
 
     @GetMapping
-    public List<CartItemResponse> list(@RequestParam("userId") Long userId) {
-        return cartService.getCart(userId);
+    public List<CartItemResponse> list(@RequestParam(value = "userId", required = false) Long userId,
+                                       @RequestParam(value = "sessionId", required = false) String sessionId) {
+        // userId、sessionId 擇一必填
+        return cartService.getCart(userId, sessionId);
     }
 
     @DeleteMapping("/{id}")
@@ -37,4 +40,3 @@ public class CartController {
         return ResponseEntity.noContent().build();
     }
 }
-
