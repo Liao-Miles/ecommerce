@@ -1,18 +1,14 @@
-package com.liaomiles.ecommerceplatform.dto.response;
+package com.liaomiles.ecommerceplatform.dto.request;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
-public class OrderResponse {
-    public Long id;
+public class OrderRequest {
     public Long userId;
-    public String status;
     public BigDecimal totalAmount;
-    public LocalDateTime createdAt;
     public String shippingName;
     public String shippingPhone;
     public String shippingAddress;
     public String shippingNote;
     public String shippingMethod;
-    public String shippingStatus;
+    // 其他欄位如有需要可再擴充
 }

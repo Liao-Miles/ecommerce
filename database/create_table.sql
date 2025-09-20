@@ -98,3 +98,21 @@ ALTER TABLE cart_items ALTER COLUMN user_id DROP NOT NULL;
 
 ALTER TABLE products
     ADD COLUMN image_url VARCHAR(255);
+
+
+ALTER TABLE orders
+    ADD COLUMN shipping_name VARCHAR(100) ,          -- 收件人姓名
+    ADD COLUMN shipping_phone VARCHAR(20) ,          -- 收件人電話
+    ADD COLUMN shipping_address TEXT ,               -- 收件地址
+    -- ADD COLUMN shipping_zip VARCHAR(20),                     -- 郵遞區號
+    ADD COLUMN shipping_note TEXT,                           -- 備註
+    ADD COLUMN shipping_method VARCHAR(50) DEFAULT 'home',   -- 配送方式 (home, store_pickup, ...)
+    ADD COLUMN shipping_status VARCHAR(20) DEFAULT 'pending',-- 配送狀態 (pending, shipped, delivered, returned)
+    ADD COLUMN tracking_number VARCHAR(100),                 -- 物流單號
+    ADD COLUMN courier VARCHAR(100);                         -- 物流公司
+
+
+ALTER TABLE orders
+    DROP COLUMN tracking_number,
+    DROP COLUMN courier,
+    DROP COLUMN shipping_zip;

@@ -2,9 +2,11 @@ package com.liaomiles.ecommerceplatform.controller;
 
 import com.liaomiles.ecommerceplatform.dto.request.LoginRequest;
 import com.liaomiles.ecommerceplatform.dto.request.RegisterRequest;
+import com.liaomiles.ecommerceplatform.dto.response.LoginResponse;
 import com.liaomiles.ecommerceplatform.entity.User;
 import com.liaomiles.ecommerceplatform.repository.UserRepository;
 import com.liaomiles.ecommerceplatform.security.JwtUtil;
+import com.liaomiles.ecommerceplatform.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -34,6 +36,8 @@ public class AuthController {
     private JwtUtil jwtUtil;
     @Autowired
     private CartService cartService;
+    @Autowired
+    private AuthService authService;
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
@@ -49,22 +53,9 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request,
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request,
                                    @RequestParam(value = "sessionId", required = false) String sessionId) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtUtil.generateToken(request.getEmail());
-        // 取得 userId
-        Optional<User> userOpt = userRepository.findByEmail(request.getEmail());
-        userOpt.ifPresent(user -> {
-            if (sessionId != null && !sessionId.isEmpty()) {
-                cartService.mergeCartOnLogin(user.getId(), sessionId);
-            }
-        });
-        Map<String, String> response = new HashMap<>();
-        response.put("token", token);
+        LoginResponse response = authService.login(request, sessionId);
         return ResponseEntity.ok(response);
     }
 }

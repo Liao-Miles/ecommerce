@@ -41,10 +41,10 @@ public class PaymentService {
         // 簡單邏輯：這裡直接設成功即可（沒有金流）
         if (order.getTotalAmount().compareTo(BigDecimal.ZERO) <= 0) {
             payment.setStatus(PaymentStatus.FAILED);
-            order.setStatus(OrderStatus.CANCELLED);
+            order.setStatus(OrderStatus.CANCELLED.name());
         } else {
             payment.setStatus(PaymentStatus.SUCCESS);
-            order.setStatus(OrderStatus.PAID);
+            order.setStatus(OrderStatus.PAID.name());
         }
 
         Payment saved = paymentRepository.save(payment);
@@ -73,7 +73,7 @@ public class PaymentService {
         paymentRepository.save(payment);
 
         Order order = payment.getOrder();
-        order.setStatus(OrderStatus.CANCELLED);
+        order.setStatus(OrderStatus.CANCELLED.name());
         orderRepository.save(order);
 
         return new PaymentResponse(
@@ -85,5 +85,3 @@ public class PaymentService {
         );
     }
 }
-
-
